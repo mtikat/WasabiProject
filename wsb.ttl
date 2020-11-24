@@ -1,13 +1,5 @@
-# baseURI: http://ns.inria.fr/wasabi/ontology/wsb
-# imports: http://dbpedia.org/ontology/
-# imports: http://purl.org/dc/terms/
-# imports: http://purl.org/ontology/mo/
-# imports: http://topbraid.org/schema/schema-single-range
-# imports: http://www.geonames.org/ontology
-# imports: http://xmlns.com/foaf/0.1/
 # prefix: wsb
 
-@prefix ao: <http://purl.org/ontology/ao/core#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix mo: <http://purl.org/ontology/mo/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -16,6 +8,7 @@
 @prefix schema: <http://schema.org/> .
 @prefix wsb: <http://ns.inria.fr/wasabi/ontology/wsb#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/>.
 
 
 # Ontology documentation
@@ -71,7 +64,7 @@ wsb:Artist_Person
 wsb:Instrument
   a owl:Class ;
   rdfs:label "instrument"@en ;
-  rdfs:comment "Title of instrument used by a musician (example: Gibson Dove)."@en ;
+  rdfs:comment "Instrument used by a musician (example: Gibson Dove)."@en ;
   owl:equivalentClass mo:Instrument ;
 .
 wsb:Lyrics
@@ -99,14 +92,7 @@ wsb:instrument_type
   a owl:DatatypeProperty ;
   rdfs:domain wsb:Instrument ;
   rdfs:label "instrument type"@en ;
-  rdfs:comment "The type of a music instrument (guitar, piano,...).(This can be removed)"@en ;
-  rdfs:range xsd:string ;
-.
-wsb:album_barcode
-  a owl:DatatypeProperty ;
-  rdfs:domain wsb:Album ;
-  rdfs:label "album barcode"@en ;
-  rdfs:comment "This can be removed (schema:barcode)"@en ;
+  rdfs:comment "The type or family of a music instrument (guitar, piano,...).(This can be removed)"@en ;
   rdfs:range xsd:string ;
 .
 wsb:deezer_id
@@ -114,13 +100,6 @@ wsb:deezer_id
   rdfs:domain owl:Thing ;
   rdfs:label "deezer id"@en ;
   rdfs:comment "This represents a unique artist, album or song id by Deezer. It's visible in the url of the entity's profile page."@en ;
-  rdfs:range xsd:string ;
-.
-wsb:album_disambiguation
-  a owl:DatatypeProperty ;
-  rdfs:domain wsb:Album ;
-  rdfs:label "album disambiguation"@en ;
-  rdfs:comment "This can be removed (schema:disambiguatingDescription)"@en ;
   rdfs:range xsd:string ;
 .
 wsb:discogs_id
@@ -156,13 +135,6 @@ wsb:animux_paths
   rdfs:comment "Song animux paths."@en ;
   rdfs:range rdf:List ;
 .
-wsb:animux_path_ambiguous
-  a owl:DatatypeProperty ;
-  rdfs:domain foaf:Agent ;
-  rdfs:label "animux path ambiguous"@en ;
-  rdfs:comment "Check with Michel."@en ;
-  rdfs:range xsd:string ;
-.
 wsb:deezerFans
   a owl:DatatypeProperty ;
   rdfs:domain owl:Thing ;
@@ -174,8 +146,8 @@ wsb:deezerMapping
   a owl:DatatypeProperty ;
   rdfs:domain wsb:Song ;
   rdfs:label "deezer mapping"@en ;
-  rdfs:comment "Check with Michel!!!!."@en ;
-  rdfs:range xsd:string ;
+  rdfs:comment "Deezer mapping of a song."@en ;
+  rdfs:range rdf:List ;
 .
 wsb:deezer_page
   a owl:ObjectProperty ;
@@ -317,7 +289,7 @@ wsb:pureVolume_page
 .
 wsb:rank
   a owl:DatatypeProperty ;
-  rdfs:subPropertyOf dbpedia-owl:rank ;
+  owl:equivalentProperty dbpedia-owl:rank ;
   rdfs:domain wsb:Song ;
   rdfs:label "rank"@en ;
   rdfs:comment "Rank of a song among others"@en ;
@@ -338,7 +310,7 @@ wsb:realName
 .
 wsb:recordLabel
   a owl:DatatypeProperty ;
-  rdfs:subPropertyOf dbpedia-owl:rank ;
+  owl:equivalentProperty dbpedia-owl:rank ;
   rdfs:domain owl:Thing ;
   rdfs:label "record label"@en ;
   rdfs:comment "This represents record labels obtained by the artist."@en ;
@@ -352,7 +324,7 @@ wsb:secondHandSongs_page
 .
 wsb:song_notes
   a owl:DatatypeProperty ;
-  rdfs:subPropertyOf dbpedia-owl:notes ;
+  owl:equivalentProperty dbpedia-owl:notes ;
   rdfs:domain wsb:Song ;
   rdfs:label "song notes"@en ;
   rdfs:comment "Additional notes on a song."@en ;
